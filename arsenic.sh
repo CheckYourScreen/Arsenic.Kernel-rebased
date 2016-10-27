@@ -26,7 +26,7 @@ compile_kernel ()
 {
 echo -e "**********************************************************************************************"
 echo "                    "
-echo "                                    Compiling Arsenic-Kernel with GCC 4.9                  "
+echo "                              Compiling Arsenic.Kernel for OOS with GCC 4.9                  "
 echo "                    "
 echo -e "**********************************************************************************************"
 make onyx_defconfig
@@ -59,9 +59,9 @@ if [ $buildtype == 'y' ]
 then
 echo "test build number?:"
 read BN
-zip -r arsenic.kernel-onyx.R$VER-test-$BN.zip *
+zip -r arsenic.kernel-onyx_OOS.R$VER-test-$BN.zip *
 else
-zip -r arsenic.kernel-onyx.R$VER-$(date +"%Y%m%d").zip *
+zip -r arsenic.kernel-onyx_OOS.R$VER-$(date +"%Y%m%d").zip *
 fi
 }
 
