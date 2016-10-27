@@ -1372,7 +1372,7 @@ CONFIG_EEPROM_93CX6=m
 # Altera FPGA firmware download module
 #
 # CONFIG_ALTERA_STAPL is not set
-CONFIG_SN3193_SLED=y
+# CONFIG_SN3193_SLED is not set
 
 #
 # SCSI device support
