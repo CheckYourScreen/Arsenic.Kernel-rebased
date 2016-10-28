@@ -11,6 +11,7 @@ KERNEL_DIR=$PWD
 KERN_IMG=$KERNEL_DIR/arch/arm/boot/zImage-dtb
 KERN_DTB=$KERNEL_DIR/arch/arm/boot/dt.img
 OUT_DIR=$KERNEL_DIR/anykernel/
+mkdir -p $KERNEL_DIR/anykernel/modules
 MODULES_DIR=$KERNEL_DIR/anykernel/modules
 STRIP="/home/nimit/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-strip"
 
