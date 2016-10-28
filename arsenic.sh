@@ -11,6 +11,8 @@ KERNEL_DIR=$PWD
 KERN_IMG=$KERNEL_DIR/arch/arm/boot/zImage-dtb
 KERN_DTB=$KERNEL_DIR/arch/arm/boot/dt.img
 OUT_DIR=$KERNEL_DIR/anykernel/
+MODULES_DIR=$KERNEL_DIR/anykernel/modules
+STRIP="/home/nimit/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-strip"
 
 blue='\033[0;34m'
 cyan='\033[0;36m'
@@ -37,6 +39,7 @@ echo -e "$red Kernel Compilation failed! Fix the errors! $nocol"
 exit 1
 fi
 # dtb  //No more seprate dtb for 3.x bootloader
+strip_modules
 zipping
 }
 
@@ -45,6 +48,17 @@ tools_sk/dtbtool -o $KERN_DTB -s 2048 -p $KERNEL_DIR/scripts/dtc/ $KERNEL_DIR/ar
 
 }
 
+strip_modules ()
+{
+echo "Copying modules"
+rm -rf $MODULES_DIR/*
+find . -name '*.ko' -exec cp {} $MODULES_DIR/ \;
+cd $MODULES_DIR
+echo "Stripping modules for size"
+$STRIP --strip-unneeded *.ko
+# zip -9 modules * //dump integrity check for future use
+cd $KERNEL_DIR
+}
 
 zipping() {
 rm -rf $OUT_DIR/arsenic*.zip
