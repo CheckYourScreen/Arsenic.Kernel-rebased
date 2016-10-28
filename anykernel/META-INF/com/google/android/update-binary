@@ -74,7 +74,7 @@ chmod -R 755 /tmp/anykernel/tools /tmp/anykernel/bin;
 bb=/tmp/anykernel/tools/busybox;
 
 ui_print "### Arsenic Kernel ###";
-ui_print " ";
+ui_print "###  for Oxygen OS ###";
 ui_print "### By-Nimit Mehta ###";
 ui_print " ";
 
@@ -130,8 +130,29 @@ if [ $? != "0" ]; then
 fi;
 
 ui_print "Sabar ka fal zeher hota h....";
+
+if [ "$(file_getprop /tmp/anykernel/anykernel.sh do.modules)" == 1 ]; then
+	ui_print "* Copying modules to system...";
+	ui_print " ";
+
+	mount -o remount,rw /system;
+	mkdir -p /system/lib/modules;
+	rm -rf /system/lib/modules/*
+	cp -rf /tmp/anykernel/modules/* /system/lib/modules/;
+	set_perm_recursive 0 0 0755 0644 /system/lib/modules;
+	mount -o remount,ro /system;
+fi;
+
 ui_print "Almost Done...  ";
 ui_print "  ";
+
+mount -o remount,rw /system
+mkdir /system/su.d
+echo "#!/system/bin/sh" > /system/su.d/permissive.sh
+echo "setenforce 0" > /system/su.d/permissive.sh
+echo "0" > /sys/fs/selinux/enforce
+chmod 755 /system/su.d/permissive.sh
+
 ui_print "   DONE..!";
 
 if [ "$(file_getprop /tmp/anykernel/anykernel.sh do.cleanup)" == 1 ]; then
