@@ -357,6 +357,7 @@ LDFLAGS_MODULE  =
 CFLAGS_KERNEL	=
 AFLAGS_KERNEL	=
 CFLAGS_GCOV	= -fprofile-arcs -ftest-coverage
+GRAPHITE_FLAGS  = -fgraphite -fgraphite-identity -floop-interchange -ftree-loop-distribution -floop-strip-mine -floop-block -ftree-loop-linear
 
 # fall back to -march=armv7-a in case the compiler isn't compatible with -mcpu and -mtune
 ARM_ARCH_OPT := -mcpu=cortex-a15 -mtune=cortex-a15
@@ -366,7 +367,8 @@ GEN_OPT_FLAGS := $(call cc-option,$(ARM_ARCH_OPT),-march=armv7-a) \
         -funsafe-math-optimizations \
 	-fmodulo-sched \
 	-fmodulo-sched-allow-regmoves \
-	-fivopts
+	-fivopts \
+	$(GRAPHITE_FLAGS)
 
 # Use LINUXINCLUDE when you must reference the include/ directory.
 # Needed to be compatible with the O= option
