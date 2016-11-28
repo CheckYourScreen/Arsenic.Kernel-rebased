@@ -37,7 +37,7 @@ echo "                              Compiling Arsenic.Kernel for OOS with GCC 4.
 echo "                    "
 echo -e "**********************************************************************************************"
 make onyx_defconfig
-make -j8
+make -j16
 if [ ! -e $KERN_IMG ];then
 echo -e "$red Kernel Compilation failed! Fix the errors! $nocol"
 exit 1
