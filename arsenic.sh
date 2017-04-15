@@ -2,7 +2,7 @@
 # Build script for Arsenic Kernel
 # By- Nimit Mehta (CheckYourScreen)
 
-# For Time Calculation
+#For Time Calculation
 BUILD_START=$(date +"%s")
 echo "enter version name for zip name (only number) :" 
 read VER
@@ -15,9 +15,6 @@ cd $KERNEL_DIR
 KERN_IMG=$KERNEL_DIR/arch/arm/boot/zImage-dtb
 KERN_DTB=$KERNEL_DIR/arch/arm/boot/dt.img
 OUT_DIR=$KERNEL_DIR/anykernel/
-mkdir -p $KERNEL_DIR/anykernel/modules
-MODULES_DIR=$KERNEL_DIR/anykernel/modules
-STRIP="$ROOT_PATH/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-strip"
 
 blue='\033[0;34m'
 cyan='\033[0;36m'
@@ -33,7 +30,7 @@ compile_kernel ()
 {
 echo -e "**********************************************************************************************"
 echo "                    "
-echo "                              Compiling Arsenic.Kernel for OOS with GCC 4.9                  "
+echo "                                    Compiling Arsenic-Kernel with GCC 4.9                  "
 echo "                    "
 echo -e "**********************************************************************************************"
 make onyx_defconfig
@@ -42,8 +39,7 @@ if [ ! -e $KERN_IMG ];then
 echo -e "$red Kernel Compilation failed! Fix the errors! $nocol"
 exit 1
 fi
-# dtb  //No more seprate dtb for 3.x bootloader
-strip_modules
+# dtb
 zipping
 }
 
@@ -52,24 +48,13 @@ tools_sk/dtbtool -o $KERN_DTB -s 2048 -p $KERNEL_DIR/scripts/dtc/ $KERNEL_DIR/ar
 
 }
 
-strip_modules ()
-{
-echo "Copying modules"
-rm -rf $MODULES_DIR/*
-find . -name '*.ko' -exec cp {} $MODULES_DIR/ \;
-cd $MODULES_DIR
-echo "Stripping modules for size"
-$STRIP --strip-unneeded *.ko
-# zip -9 modules * //dump integrity check for future use
-cd $KERNEL_DIR
-}
 
 zipping() {
 rm -rf $OUT_DIR/arsenic*.zip
 rm -rf $OUT_DIR/zImage
 rm -rf $OUT_DIR/dtb
 cp $KERN_IMG $OUT_DIR/zImage
-# cp $KERN_DTB $OUT_DIR/dtb   //farewell <3
+# cp $KERN_DTB $OUT_DIR/dtb
 cd $OUT_DIR
 echo "is it a test build ..? (y/n) :"
 read buildtype
@@ -77,12 +62,12 @@ case "$buildtype" in
 	y | Y)
 		echo "test build number?:"
 		read BN
-		zip -r arsenic.kernel-onyx_OOS.V$VER-test-$BN.zip *
-		echo "Test Build no. $BN of V$VER Ready..!"
+		zip -r -9 arsenic.kernel-onyx.R$VER-test-$BN.zip *
+		echo "Test Build no. $BN of R$VER Ready..!"
 		;;
 	*)
-		zip -r arsenic.kernel-onyx_OOS.V$VER-$(date +"%Y%m%d").zip *
-		echo "Release Build V$VER Ready..!!"
+		zip -r -9 arsenic.kernel-onyx.R$VER-$(date +"%Y%m%d").zip *
+		echo "Release Build R$VER Ready..!!"
 		;;
 esac
 }
