@@ -112,22 +112,22 @@ void panic(const char *fmt, ...)
 	vsnprintf(buf, sizeof(buf), fmt, args);
 	va_end(args);
 	printk(KERN_EMERG "Kernel panic - not syncing: %s\n",buf);
-#ifdef VENDOR_EDIT
-/* porting from 8994 oneplus2 by yangrujin@bsp 2015/10/27, for support oem trace */
-    //pr_info("kernel panic because of %s\n", fmt);
-	if(!is_otrace_on()) {
-        if(strcmp(fmt, "modem") == 0){
-		    atomic_notifier_call_chain(&panic_notifier_list, 0, buf);
-            kernel_restart("modem");
-        }else if(strcmp(fmt, "android") == 0){
-		    atomic_notifier_call_chain(&panic_notifier_list, 0, buf);
-            kernel_restart("android");
-        }else{
-		    atomic_notifier_call_chain(&panic_notifier_list, 0, buf);
-            kernel_restart("kernel");
-        }
-	}
-#endif  /*VENDOR_EDIT*/
+// #ifdef VENDOR_EDIT
+// /* porting from 8994 oneplus2 by yangrujin@bsp 2015/10/27, for support oem trace */
+//    //pr_info("kernel panic because of %s\n", fmt);
+//	if(!is_otrace_on()) {
+//        if(strcmp(fmt, "modem") == 0){
+//		    atomic_notifier_call_chain(&panic_notifier_list, 0, buf);
+//           kernel_restart("modem");
+//        }else if(strcmp(fmt, "android") == 0){
+//		    atomic_notifier_call_chain(&panic_notifier_list, 0, buf);
+//            kernel_restart("android");
+//        }else{
+//		    atomic_notifier_call_chain(&panic_notifier_list, 0, buf);
+//            kernel_restart("kernel");
+//        }
+//	}
+// #endif  /*VENDOR_EDIT*/ */
 	
 #ifdef CONFIG_DEBUG_BUGVERBOSE
 	/*

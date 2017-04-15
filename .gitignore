@@ -106,3 +106,4 @@ all.config
 /anykernel/zImage
 /anykernel/dtb
 /anykernel/arsenic*
+hz.bc
