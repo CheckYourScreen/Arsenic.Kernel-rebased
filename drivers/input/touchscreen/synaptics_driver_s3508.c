@@ -63,7 +63,7 @@ static int LCD_HEIGHT ;
 
 #define IMAGE_AREA_OFFSET 0x100
 
-#define SUPPORT_VIRTUAL_KEY
+//#define SUPPORT_VIRTUAL_KEY
 
 //#define KEY_USE
 
@@ -5457,9 +5457,9 @@ if( ts_g->reset_gpio > 0 )
 		goto ERR_RESUME;
 	}
 	is_suspend = 0;
-	key_appselect_pressed = 0;
-	key_home_pressed = 0;
- 	key_back_pressed = 0;
+	//key_appselect_pressed = 0;
+	//key_home_pressed = 0;
+ 	//key_back_pressed = 0;
 
     TPD_ERR("%s:normal end!\n", __func__);
 	up(&work_sem);
