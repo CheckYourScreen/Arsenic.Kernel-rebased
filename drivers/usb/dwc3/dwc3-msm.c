@@ -2048,7 +2048,6 @@ static int dwc3_msm_suspend(struct dwc3_msm *mdwc)
 		}
 		enable_irq(mdwc->hs_phy_irq);
 	}
-
 	return 0;
 }
 
