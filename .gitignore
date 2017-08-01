@@ -30,9 +30,16 @@ modules.builtin
 *.lzma
 *.xz
 *.lzo
+*.img
 *.patch
 *.gcno
-
+*.lz4
+*.lzo
+*.patch
+*.gcno
+modules.builtin
+Module.symvers
+*.dwo
 #
 # Top-level generic files
 #
@@ -44,7 +51,6 @@ modules.builtin
 /System.map
 /Module.markers
 /Module.symvers
-
 #
 # Debian directory (make deb-pkg)
 #
@@ -55,7 +61,9 @@ modules.builtin
 #
 !.gitignore
 !.mailmap
-
+!anykernel/modules/vendor/lib/libthermalioctl.so
+!anykernel/modules/vendor/lib/libthermalclient.so
+!anykernel/modules/etc/thermal-engine-8974.conf
 #
 # Generated include files
 #
@@ -84,3 +92,17 @@ GTAGS
 *.orig
 *~
 \#*#
+#
+# Leavings from module signing
+#
+extra_certificates
+signing_key.priv
+signing_key.x509
+x509.genkey
+
+# Kconfig presets
+all.config
+*.zip
+/anykernel/zImage
+/anykernel/dtb
+/anykernel/arsenic*
