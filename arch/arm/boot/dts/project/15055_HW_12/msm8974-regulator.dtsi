@@ -427,7 +427,7 @@
 		status = "okay";
 		pm8941_l23: regulator-l23 {
 			/*regulator-min-microvolt = <3000000>;*/  /*oppo leihui 2013-11-06 modify*/
-            regulator-min-microvolt = <2800000>;			
+			regulator-min-microvolt = <2800000>;
 			regulator-max-microvolt = <3000000>;
 			/*qcom,init-voltage = <3000000>;*/	/*oppo leihui 2013-11-06 modify*/
 			qcom,init-voltage = <2800000>;
@@ -491,7 +491,7 @@
 			regulator-min-microvolt = <500000>;
 			regulator-max-microvolt = <1300000>;/*(sjc1113 up to 1.3V) qcom patch, CASE ID: 01694672, Zhilong.Zhang@OnlineRd.Driver, 2014/09/19, Modify for solve the problem of Kernel NULL pointer */
 			qcom,headroom-voltage = <150000>;
-			qcom,retention-voltage = <675000>;
+			qcom,retention-voltage = <660000>;
 			qcom,ldo-default-voltage = <750000>;
 			qcom,ldo-threshold-voltage = <850000>;
 			qcom,ldo-delta-voltage = <50000>;
@@ -507,7 +507,7 @@
 			regulator-min-microvolt = <500000>;
 			regulator-max-microvolt = <1300000>;/*(sjc1113 up to 1.3V) qcom patch, CASE ID: 01694672, Zhilong.Zhang@OnlineRd.Driver, 2014/09/19, Modify for solve the problem of Kernel NULL pointer */
 			qcom,headroom-voltage = <150000>;
-			qcom,retention-voltage = <675000>;
+			qcom,retention-voltage = <660000>;
 			qcom,ldo-default-voltage = <750000>;
 			qcom,ldo-threshold-voltage = <850000>;
 			qcom,ldo-delta-voltage = <50000>;
@@ -523,7 +523,7 @@
 			regulator-min-microvolt = <500000>;
 			regulator-max-microvolt = <1300000>;/*(sjc1113 up to 1.3V) qcom patch, CASE ID: 01694672, Zhilong.Zhang@OnlineRd.Driver, 2014/09/19, Modify for solve the problem of Kernel NULL pointer */
 			qcom,headroom-voltage = <150000>;
-			qcom,retention-voltage = <675000>;
+			qcom,retention-voltage = <660000>;
 			qcom,ldo-default-voltage = <750000>;
 			qcom,ldo-threshold-voltage = <850000>;
 			qcom,ldo-delta-voltage = <50000>;
@@ -539,7 +539,7 @@
 			regulator-min-microvolt = <500000>;
 			regulator-max-microvolt = <1300000>;/*(sjc1113 up to 1.3V) qcom patch, CASE ID: 01694672, Zhilong.Zhang@OnlineRd.Driver, 2014/09/19, Modify for solve the problem of Kernel NULL pointer */
 			qcom,headroom-voltage = <150000>;
-			qcom,retention-voltage = <675000>;
+			qcom,retention-voltage = <660000>;
 			qcom,ldo-default-voltage = <750000>;
 			qcom,ldo-threshold-voltage = <850000>;
 			qcom,ldo-delta-voltage = <50000>;
