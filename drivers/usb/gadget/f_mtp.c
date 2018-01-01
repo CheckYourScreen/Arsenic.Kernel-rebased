@@ -702,8 +702,8 @@ static ssize_t mtp_read(struct file *fp, char __user *buf,
 	DBG(cdev, "mtp_read(%d)\n", count);
 	#endif
 
-	if (!dev->ep_out)
-		return -EINVAL;
+	if (dev == NULL || dev->ep_out == NULL)
+		return -ENODEV;
 
 	len = ALIGN(count, dev->ep_out->maxpacket);
 
@@ -804,9 +804,6 @@ static ssize_t mtp_write(struct file *fp, const char __user *buf,
 	#else
 	DBG(cdev, "mtp_write(%d)\n", count);
 	#endif
-
-	if (!dev->ep_in)
-		return -EINVAL;
 
 	spin_lock_irq(&dev->lock);
 	if (dev->state == STATE_CANCELED) {
