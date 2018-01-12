@@ -176,7 +176,7 @@ int tcp_v4_connect(struct sock *sk, struct sockaddr *uaddr, int addr_len)
 	if (IS_ERR(rt)) {
 		err = PTR_ERR(rt);
 		if (err == -ENETUNREACH)
-			IP_INC_STATS_BH(sock_net(sk), IPSTATS_MIB_OUTNOROUTES);
+			IP_INC_STATS(sock_net(sk), IPSTATS_MIB_OUTNOROUTES);
 		return err;
 	}
 
@@ -1524,10 +1524,8 @@ exit:
 	NET_INC_STATS_BH(sock_net(sk), LINUX_MIB_LISTENDROPS);
 	return NULL;
 put_and_exit:
-	tcp_clear_xmit_timers(newsk);
-	tcp_cleanup_congestion_control(newsk);
-	bh_unlock_sock(newsk);
-	sock_put(newsk);
+	inet_csk_prepare_forced_close(newsk);
+	tcp_done(newsk);
 	goto exit;
 }
 EXPORT_SYMBOL(tcp_v4_syn_recv_sock);
